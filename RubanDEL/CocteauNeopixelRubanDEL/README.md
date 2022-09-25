@@ -12,5 +12,5 @@ Description des blocs :
 - allumer une DEL en déterminant  son numéro sur le ruban (0 = première DEL) et sa couleur RVB
 - Allumer toutes les DEL avec une couleur RVB
 - Éteindre toutes les DEL
-- Régler la luminosoté des DEL
+- Régler la luminosité des DEL
 
