@@ -1,0 +1,133 @@
+{	
+	"extensionName": "Cocteau Ruban DEL Neopixel",
+	"description": "Gestion ruban DEL en français, pour mBlock v3.4.12",
+	"version": "1.2",
+	"author": "Gaëtan Brissot ",
+	"homepage": "https://github.com/Gaetanb76/mBlock.git",
+	"sort":0,
+	"javascriptURL":"js/CocteauRubanDELNeopixel.js",
+  	"firmware":"1.0",
+  	"extensionPort":0,
+	"tags" : "makeblock,Neopixel,Ruban,DEL,LED,strip",
+	"blockSpecs": [		
+      [
+         "w",
+         "Définition : Broche ~ %n ; Nombre de DEL : %n ",
+         "initNeopixel",
+         "5",
+         "8",
+         {
+            "encode": "{d0}{d1}",
+            "inc": "#include \"Adafruit_NeoPixel.h\"\n",
+            "def": "Adafruit_NeoPixel strip = Adafruit_NeoPixel({1}, {0}, NEO_RGB + NEO_KHZ800);\n",
+            "setup": "strip.begin();\n",
+            "work": "",
+            "loop": ""
+         }
+      ],
+      [
+         "w",
+         "DEL numéro: %n ; Couleurs : R%d.gvalue V%d.rvalue  B%d.bvalue",
+         "runNeopixel",
+         "0",
+         0,
+         0,
+         0,
+         {
+            "encode": "{d0}{d1}{d2}{d3}",
+            "inc": "",
+            "def": "",
+            "setup": "",
+            "work": "strip.setPixelColor({0},strip.Color({2},{1},{3}));\n strip.show();\n",
+            "loop": ""
+         }
+      ],
+	  [
+         "w",
+         "Allumer toutes les DEL ; Couleurs : R%d.gvalue V%d.rvalue  B%d.bvalue",
+         "runNeopixelFill",
+         "0",
+         0,
+         0,
+         0,
+         {
+            "encode": "{d0}{d1}{d2}",
+            "inc": "",
+            "def": "uint32_t couleurDEL = 0;\n",
+            "setup": "",
+            "work": "couleurDEL = strip.Color({1},{0},{2});\n strip.fill(couleurDEL, 0);\n strip.show();\n",
+            "loop": ""
+         }
+      ],
+	  [
+         "w",
+         "Eteindre toutes les DEL",
+         "runNeopixelClear",
+         "0",
+         0,
+         0,
+         0,
+         {
+            "encode": "",
+            "inc": "",
+            "def": "",
+            "setup": "",
+            "work": "strip.clear();\n strip.show();\n",
+            "loop": ""
+         }
+      ],
+	  [
+         "w",
+         "Régler la Luminosité à %n (0~255)",
+         "SetNeopixelBright",
+         "50",
+         0,
+         0,
+         0,
+         {
+            "encode": "{d0}",
+            "inc": "",
+            "def": "",
+            "setup": "",
+            "work": "strip.setBrightness({0});\n",
+            "loop": ""
+         }
+      ]
+   ],
+	"menus": {
+		"rvalue": [
+         "0",
+         "50",
+         "100",
+         "150",
+         "255"
+      ],
+      "gvalue": [
+         "0",
+         "50",
+         "100",
+         "150",
+         "255"
+      ],
+      "bvalue": [
+         "0",
+         "50",
+         "100",
+         "150",
+         "255"
+      ]
+	},
+	"values":{
+		"HIGH":1,
+		"LOW":0
+	},
+	"translators":{
+		"zh_TW":{
+			"Demo Program":"演示程序",
+			"HIGH":"高电平",
+			"LOW":"低电平",
+			"digitalWrite( %n , %d.digital )":"数字口输出( %n ,%d.digital )",
+      "blink":"闪烁"
+		}
+	}
+}
